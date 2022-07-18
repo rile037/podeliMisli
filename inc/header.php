@@ -29,15 +29,10 @@ include "functions/init.php";
         <div class="brand-title">
           <ul>
             <li>
-            
+              <a href='index.php' class='naslov'>
+            <h3 style='font-family: din-round, sans-serif; color: #1899d6; padding-top: 10px;'>podeliMisli.com</h3>
+</a>
 </li>
-            <li>
-              <a href="addContent.php">
-                <input type="button" value="Dodaj ispovest" class="buttonDodajIspovest">
-
-                </input>
-              </a>
-            </li>
           </ul>
         </div>
         <a href="#" class="toggle-button">
@@ -58,6 +53,7 @@ include "functions/init.php";
           </ul>
             </div>
             </nav>
+   
             <br>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src='../js/script.js'></script>

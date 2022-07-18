@@ -28,23 +28,38 @@ include('inc/header.php');
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
     />
   </head>
-    <hr>
-    <div style='text-align: center; padding-top: 15px;'>
+    
+    <div style='text-align: center;'><!--
     <select name="filter" id="filter">
   <option value="new">Najnovije</option>
   <option value="approved">Najviše odobrene</option>
   <option value="judged">Najviše osuđene</option>
+  <
 </select>
+
     <hr>
-    <h3 style='padding-top: 15px;' id='filterName'>Najnovije ispovesti</h3>
-    
-<h3></h3>
-</div>
+    <h3 style='padding-top: 15px;' id='filterName'>Najnovije ispovesti </h3>
+-->
+
     <div class="posts">
+
     <?php display_message(); ?>
 
         <?php fetch_all_posts(); ?>
 
         <?php create_comment();?>
     </div>
+    <nav class="mobile-nav" style='margin: 0;'>
+      
+        <a href="index.php" class="bloc-icon active">
+        <i class="fa-solid fa-home" style='color: white;'></i>
+        </a>
+        <a href="addContent.php" class="bloc-icon">
+        <i class="fa-solid fa-feather-pointed ikonica"></i>
+        </a>
+        <a href="message.php" class="bloc-icon">
+        <i class="fa-solid fa-message ikonica"></i>
+        </a>
+    </nav>
+
 <?php include('inc/footer.php'); ?>

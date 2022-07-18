@@ -5,7 +5,7 @@ include('inc/header.php');
 <?php if (isset($_SESSION['email'])) : ?>
 <?php create_post();?>
 <br>
-
+<link rel="stylesheet" href="css/style.css" />
 
 <form class="formaPostaviIspovest" method="POST">
   <h3 style="padding: 10px;">Nova ispovest</h3>
@@ -42,7 +42,18 @@ include('inc/header.php');
     </div>
   </body>
 </html>-->
-
+<nav class="mobile-nav" style='margin: 0;'>
+      
+        <a href="index.php" class="bloc-icon ">
+        <i class="fa-solid fa-home" style='color: white;'></i>
+        </a>
+        <a href="addContent.php" class="bloc-icon active">
+        <i class="fa-solid fa-feather-pointed ikonica"></i>
+        </a>
+        <a href="message.php" class="bloc-icon">
+        <i class="fa-solid fa-message ikonica"></i>
+        </a>
+    </nav>
       <?php include "inc/footer.php" ?>
 
 <?php include "inc/footer.php";?>

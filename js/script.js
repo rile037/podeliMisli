@@ -112,11 +112,10 @@ function approve_post(el) {
   xmlhttp.onload = function () {
     let id = el.getAttribute("data-post_id");
 
-    document.getElementById("approve_" + id).innerText =
-      "Odobravanja: " + this.responseText;
+    document.getElementById("approve_" + id).innerText = "" + this.responseText;
 
     el.setAttribute("disabled", "disabled");
-    el.style.background = "green";
+    el.style.background = "#11f542";
     el.style.color = "white";
     setCookie("approved_" + id, id, 15);
   };
@@ -133,15 +132,19 @@ function approve_post(el) {
     );
   }
 }
+
+function contact(el) {
+  let name = el.getAttribute("data-post_id");
+  alert("Da li zelite da kontaktirate korisnika: " + name + "?");
+}
+
 function judge_post(el) {
   const xmlhttp = new XMLHttpRequest();
 
   xmlhttp.onload = function () {
     let id = el.getAttribute("data-post_id");
-
-    document.getElementById("judge_" + id).innerText =
-      "Osude: " + this.responseText;
-
+    p_id = document.getElementById("judge_" + id);
+    p_id.innerText = "" + this.responseText;
     el.setAttribute("disabled", "disabled");
     el.style.background = "red";
     el.style.color = "white";

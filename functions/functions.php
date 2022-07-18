@@ -353,84 +353,72 @@ function fetch_all_posts()
             $user = get_user($row['user_id']);
             $post = $row['id'];
 
-            $date = date("d-m-Y", strtotime($row['created_time']));
+            $date = date("d.m.Y", strtotime($row['created_time']));
             $time = date("H:i", strtotime($row['created_time']));
-
-            echo "<div class='post'>
-            <div>
-            <p style='color: gray; padding-bottom: 12px; display: flex; float: left; font-size: 15px;'>#" . $post . "</p>
-            <p style='color: gray; padding-bottom: 12px; display: flex; float: right; font-size: 15px'>" . $date . " - ". $time ."</p>
+            if($row['approve'] > 15){
+              echo "<div class='row'><div class='col-2'></div><div class='col-8' style='margin-top: -35px; top: 30px; z-index: 1;'><div class='top'>Ispovest meseca <i class='fa-solid fa-trophy'></i></i></div><div class='col-2'></div></div></div>
+              ";
+            }
+            echo "
+<div class='post'>
+            <div class='row'>
+            <div class='col-2'>
+            <p style='color: white; display: flex; float: left; font-size: 15px;'>#" . $post . "</p></div>
+            <div class='col-6'>
             </div>
-            <div style='margin-top: 50px;'>
-            <p><img src='" . $user['profile_image'] . "' alt='' style='max-width: 250px;'><i><b>" . $user['username'] . "</b></i></p>
+            <div class='col-4'>
+            <p style='font-size: 15px; display: flex; float: right;'>" . $date ."</p></div>";
             
-                    <p style='max-width: 500px; padding: 15px;'><strong><q>" . $row['content'] . "</q></strong></p>
-                 
-                    <div style='text-align: center; display: flex;'>
-                    <div class='approves'><p id='approve_".$row['id']."'>Odobravanja: " . $row['approve'] . "
+            // <p><img src='" . $user['profile_image'] . "' alt='' style='max-width: 250px;'><i><b>" . $user['username'] . "</b></i></p>
 
+
+            echo "
+            </div>
+            <div style='margin-top: 10px;'>
+            
                     
-                    </p>";
-                    if(isset($_COOKIE['approved_' . $post])){
+                    <p class='contentPost'>" . $row['content'] . "</p>
 
+                    <div class='row' style='padding-top: 20px;'>
+                    <div class='col-4' >
+                    ";
+                    if(isset($_COOKIE['approved_' . $post])){
                     echo"  
-                    <button style='background-color: green; color: white;' disabled='disabled' onclick='approve_post(this)' id='approvePost' data-post_id='".$row['id']."'>Odobri</button>";
+                    <button class='approve' style='color: white; background-color: #11f542' disabled='disabled' onclick='approve_post(this)' id='approvePost' data-post_id='".$row['id']."'>Odobri</button>";
                     }
                     else{
                       echo"  
-                      <button style='background-color: white;' onclick='approve_post(this)' id='approvePost_".$row['id']."' data-post_id='".$row['id']."'>Odobri</button>";
+                      
+                      <button class='approve' onclick='approve_post(this)' id='approvePost_".$row['id']."' data-post_id='".$row['id']."'>Odobri</button>
+                      
+                      ";
                     }
                     
-                    echo "</div>
+                    echo "
+                    <p class='counter' id='approve_".$row['id']."'>" . $row['approve'] . "</p>
 
-                    <div  class='judges'><p id='judge_".$row['id']."'>Osude: " . $row['judge'] . "
-
-                    </p>";
-
+                    </div>
+                    <div class='col-4'>
+                    ";
                     if(isset($_COOKIE['judged_' . $post])){
-
                     echo"
-
-                    <button style='background-color: red; color: white;' disabled='disabled' onclick='judge_post(this)' id='judgePost_".$row['id']."' data-post_id='".$row['id']."'>Osudi</button>";
+                    <button  class='judged' style='background-color: red; color: white;' disabled='disabled' onclick='judge_post(this)' id='judgePost_".$row['id']."' data-post_id='".$row['id']."'>Osudi</button>";
                     }
                     else{
                     echo "
-                    <button style='background-color: white;' onclick='judge_post(this)' id='judgePost' data-post_id='".$row['id']."'>Osudi</button>";
+                    <button class='judged' onclick='judge_post(this)' id='judgePost' data-post_id='".$row['id']."'>Osudi</button>
+                    ";
                   }
                     echo"
+                    <p class='counter' id='judge_".$row['id']."'>" . $row['judge'] . "</p>
+                    </div>
+                    <div class='col-4'>
+                    <button class='approve' onclick='contact(this)' data-post_id='".$user['id']."' id='messagePost'>Kontaktiraj</button>
+                    </div>
+                   </div>
+                   </div>
+   </div>
                     
-                    </div>
-                    </div>
-                    </div>
-                    
-                    ";
-                   /*  $query2 = "SELECT * FROM comments WHERE post_id = '$post'";
-                    $result2 = query($query2);
-                    if ($result2->num_rows > 0) {
-                      while ($row2 = $result2->fetch_assoc()) {
-                    echo "
-                    <div class='comment'>
-                    <p> " . $row2['post_id'] . "</p>
-                    <p> " . $row2['content'] . "</p>
-                    </div>"; 
-                      }
-                    } 
-                    
-                    <form action='functions/comment.php' class='formaPostaviKomentar' method='POST' style='max-width: 250;'>
-                      <textarea class='textAreaIspovest' style='width: 70%;' name='post_comment' cols='40' rows='3' placeholder='Napisite vase misljenje...'></textarea>
-                        <input type='submit' value='Postavi' id='comment_post' style='width: 70%;' name='post_id' class='buttonPostavi'>
-                      </form>*/
-                echo"
-                <hr>
-                    <div style=' text-align: center; '>
-                    <p style='color: gray; '>Ispovest nema komentara.</p>                      
-                    </div>";
-                      
-          
-echo"
-                    </div>
-
-                    <hr>
                     ";
         }
       }
